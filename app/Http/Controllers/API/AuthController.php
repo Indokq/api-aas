@@ -16,7 +16,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'role' => 'required|in:admin,user'
+            // optional: jangan izinkan 'admin' di inputan API
         ]);
 
         $user = User::create([
@@ -25,9 +25,14 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        $user->assignRole($request->role);
+        // assign default 'user' role saja
+        $user->assignRole('user');
 
-        return response()->json(['message' => 'User registered']);
+        return response()->json([
+            'message' => 'User registered',
+            'user' => $user,
+            'role' => $user->getRoleNames()->first()
+        ], 201);
     }
 
     public function login(Request $request)
@@ -50,7 +55,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'user' => $user
+            'user' => $user,
+            'role' => $user->getRoleNames()->first()
         ]);
     }
 

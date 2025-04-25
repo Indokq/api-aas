@@ -34,10 +34,10 @@ Route::middleware(['is_admin'])->group(function () {
     Route::prefix('admin/kategori')->group(function () {
         Route::get('/', [KategoriController::class, 'index'])->name('admin.kategori.index');
         Route::get('/create', [KategoriController::class, 'create'])->name('admin.kategori.create');
-        Route::post('/store', [KategoriController::class, 'store'])->name('admin.kategori.store');
+        Route::post('/store', [KategoriController::class, 'store'])->name('kategori.store');
         Route::get('/edit/{id}', [KategoriController::class, 'edit'])->name('admin.kategori.edit');
-        Route::put('/update/{id}', [KategoriController::class, 'update'])->name('admin.kategori.update');
-        Route::delete('/destroy/{id}', [KategoriController::class, 'destroy'])->name('admin.kategori.destroy');
+        Route::put('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+        Route::delete('/destroy/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
     });
 
 });

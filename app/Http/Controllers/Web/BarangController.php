@@ -34,7 +34,7 @@ class BarangController extends Controller
 
         Barang::create($request->all());
 
-        return redirect()->route('barang.index')->with('success', 'Barang berhasil ditambahkan');
+        return redirect()->route('admin.barang.index')->with('success', 'Barang berhasil ditambahkan');
     }
 
     // Form edit barang
@@ -58,13 +58,13 @@ class BarangController extends Controller
         $barang = Barang::findOrFail($id);
         $barang->update($request->all());
 
-        return redirect()->route('barang.index')->with('success', 'Barang berhasil diperbarui');
+        return redirect()->route('admin.barang.index')->with('success', 'Barang berhasil diperbarui');
     }
 
     // Hapus barang
     public function destroy($id)
     {
         Barang::findOrFail($id)->delete();
-        return redirect()->route('barang.index')->with('success', 'Barang berhasil dihapus');
+        return redirect()->route('admin.barang.index')->with('success', 'Barang berhasil dihapus');
     }
 }

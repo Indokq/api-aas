@@ -29,7 +29,7 @@ class KategoriController extends Controller
 
         Kategori::create($request->all());
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan');
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil ditambahkan');
     }
 
     // Form edit kategori
@@ -49,13 +49,13 @@ class KategoriController extends Controller
         $kategori = Kategori::findOrFail($id);
         $kategori->update($request->all());
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui');
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil diperbarui');
     }
 
     // Hapus kategori
     public function destroy($id)
     {
         Kategori::findOrFail($id)->delete();
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus');
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus');
     }
 }

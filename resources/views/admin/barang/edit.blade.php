@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('content')
 <div class="container mt-4">
@@ -35,7 +35,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('barang.index') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('admin.barang.index') }}" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 @endsection

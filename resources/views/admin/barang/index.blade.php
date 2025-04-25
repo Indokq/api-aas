@@ -27,7 +27,7 @@
                 <td>{{ $barang->deskripsi }}</td>
                 <td>{{ $barang->jumlah }}</td>
                 <td>
-                    <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ route('admin.barang.edit', $barang->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     <form action="{{ route('barang.destroy', $barang->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')

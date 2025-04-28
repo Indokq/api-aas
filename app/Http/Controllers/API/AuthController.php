@@ -25,7 +25,6 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        // assign default 'user' role saja
         $user->assignRole('user');
 
         return response()->json([

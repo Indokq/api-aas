@@ -29,7 +29,6 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'id_kategori' => 'required|exists:kategoris,id',
             'deskripsi' => 'nullable|string',
-            'jumlah' => 'required|integer'
         ]);
 
         Barang::create($request->all());

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\BarangController;
 use App\Http\Controllers\Web\KategoriController;
+use App\Http\Controllers\Web\StokBarangController;
 
 
 // Auth
@@ -38,6 +39,15 @@ Route::middleware(['is_admin'])->group(function () {
         Route::get('/edit/{id}', [KategoriController::class, 'edit'])->name('admin.kategori.edit');
         Route::put('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
         Route::delete('/destroy/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+    });
+
+    Route::prefix('admin/stok')->group(function () {
+        Route::get('/', [StokBarangController::class, 'index'])->name('admin.stok.index');
+        Route::get('/create', [StokBarangController::class, 'create'])->name('admin.stok.create');
+        Route::post('/store', [StokBarangController::class, 'store'])->name('stok.store');
+        Route::get('/edit/{id}', [StokBarangController::class, 'edit'])->name('admin.stok.edit');
+        Route::put('/update/{id}', [StokBarangController::class, 'update'])->name('stok.update');
+        Route::delete('/destroy/{id}', [StokBarangController::class, 'destroy'])->name('stok.destroy');
     });
 
 });

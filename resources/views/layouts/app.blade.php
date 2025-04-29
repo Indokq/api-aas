@@ -15,7 +15,7 @@
         }
         .sidebar {
             position: fixed;
-            top: 56px;
+            top: 0;
             left: 0;
             height: 100%;
             width: 250px;
@@ -48,7 +48,7 @@
         }
         .main-content {
             margin-left: 260px;
-            padding: 90px 20px 20px 20px;
+            padding: 20px;
         }
         .card-header {
             background-color: #343a40;
@@ -114,14 +114,14 @@
         <ul class="list-unstyled">
             <li><a href="{{ route('admin.kategori.index') }}"><i class="fa fa-cogs"></i> Kategori</a></li>
             <li><a href="{{ route('admin.barang.index') }}"><i class="fa fa-cube"></i> Barang</a></li>
-            <li><a href="#"><i class="fa fa-archive"></i> Peminjaman</a></li>
-            <li><a href="#"><i class="fa fa-exchange"></i> Pengembalian</a></li>
-            <li><a href="#"><i class="fa fa-bar-chart"></i> Laporan Peminjaman</a></li>
-            <li><a href="#"><i class="fa fa-bar-chart-o"></i> Laporan Pengembalian</a></li>
+            <li><a href="{{ route('admin.stok.index') }}"><i class="fa fa-bar-chart-o"></i> Stok Barang</a></li>
+            <li><a href="{{ url('#') }}"><i class="fa fa-archive"></i> Peminjaman</a></li>
+            <li><a href="{{ url('#') }}"><i class="fa fa-exchange"></i> Pengembalian</a></li>
+            <li><a href="{{ url('#') }}"><i class="fa fa-bar-chart"></i> Laporan Peminjaman</a></li>
+            <li><a href="{{ url('#') }}"><i class="fa fa-bar-chart-o"></i> Laporan Pengembalian</a></li>
         </ul>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
         @yield('content')
     </div>
@@ -130,4 +130,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> 

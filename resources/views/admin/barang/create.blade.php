@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-5">
     <h1 class="mb-4">Tambah Barang</h1>
 
     <form action="{{ route('barang.store') }}" method="POST">
@@ -25,11 +25,6 @@
         <div class="mb-3">
             <label>Deskripsi</label>
             <textarea name="deskripsi" class="form-control"></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label>Jumlah</label>
-            <input type="number" name="jumlah" class="form-control" required>
         </div>
 
         <button type="submit" class="btn btn-success">Simpan</button>

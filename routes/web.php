@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\BarangController;
 use App\Http\Controllers\Web\KategoriController;
+use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\StokBarangController;
 
 
@@ -17,9 +18,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['is_admin'])->group(function () {
 
     // Dashboard
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
     // Barang CRUD
     Route::prefix('admin/barang')->group(function () {

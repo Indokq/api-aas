@@ -115,7 +115,7 @@
             <li><a href="{{ route('admin.kategori.index') }}"><i class="fa fa-cogs"></i> Kategori</a></li>
             <li><a href="{{ route('admin.barang.index') }}"><i class="fa fa-cube"></i> Barang</a></li>
             <li><a href="{{ route('admin.stok.index') }}"><i class="fa fa-bar-chart-o"></i> Stok Barang</a></li>
-            <li><a href="{{ url('#') }}"><i class="fa fa-archive"></i> Peminjaman</a></li>
+            <li><a href="{{ route('admin.peminjaman.index') }}"><i class="fa fa-archive"></i> Peminjaman</a></li>
             <li><a href="{{ url('#') }}"><i class="fa fa-exchange"></i> Pengembalian</a></li>
             <li><a href="{{ url('#') }}"><i class="fa fa-bar-chart"></i> Laporan Peminjaman</a></li>
             <li><a href="{{ url('#') }}"><i class="fa fa-bar-chart-o"></i> Laporan Pengembalian</a></li>

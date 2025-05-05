@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\BarangController;
 use App\Http\Controllers\Web\KategoriController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\PeminjamanController;
 use App\Http\Controllers\Web\StokBarangController;
 
 
@@ -50,6 +51,16 @@ Route::middleware(['is_admin'])->group(function () {
         Route::put('/update/{id}', [StokBarangController::class, 'update'])->name('stok.update');
         Route::delete('/destroy/{id}', [StokBarangController::class, 'destroy'])->name('stok.destroy');
     });
+
+
+    Route::prefix('admin/peminjaman')->group(function () {
+        Route::get('/', [PeminjamanController::class, 'index'])->name('admin.peminjaman.index');
+        Route::get('/{id}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
+        Route::post('/approve/{id}', [PeminjamanController::class, 'approve'])->name('peminjaman.approve');
+        Route::post('/reject/{id}', [PeminjamanController::class, 'reject'])->name('peminjaman.reject');
+        Route::post('/return/{id}', [PeminjamanController::class, 'return'])->name('peminjaman.return');
+});
+
 
 });
 

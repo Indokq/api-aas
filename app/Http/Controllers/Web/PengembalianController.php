@@ -76,7 +76,7 @@ class PengembalianController extends Controller
         $pengembalian = Pengembalian::findOrFail($id);
 
         // Tampilkan form untuk memasukkan denda
-        return view('admin.pengembalian.mark_damaged', compact('pengembalian'));
+        return view('admin.pengembalian.markDamaged', compact('pengembalian'));
     }
 
     public function updateDamaged(Request $request, $id)

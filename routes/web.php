@@ -69,7 +69,7 @@ Route::middleware(['is_admin'])->group(function () {
         Route::post('/approve/{id}', [PengembalianController::class, 'approve'])->name('pengembalian.approve');
         Route::post('/reject/{id}', [PengembalianController::class, 'reject'])->name('pengembalian.reject');
         Route::get('/damaged/{id}', [PengembalianController::class, 'markDamaged'])->name('admin.pengembalian.mark_damaged');
-        Route::put('/damaged/{id}', [PengembalianController::class, 'updateDamaged'])->name('admin.pengembalian.update_damaged');
+        Route::put('/damaged/{id}', [PengembalianController::class, 'updateDamaged'])->name('pengembalian.update_damaged');
 });
 
 

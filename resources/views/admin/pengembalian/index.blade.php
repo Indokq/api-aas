@@ -57,7 +57,7 @@
                                 @elseif($pengembalian->status_pengembalian == 'completed')
                                     <a href="{{ route('admin.pengembalian.show', $pengembalian->id) }}" class="btn btn-info btn-sm">View</a>
                                 @elseif($pengembalian->status_pengembalian == 'damaged')
-                                    <a href="{{ route('admin.pengembalian.show', $pengembalian->id) }}" class="btn btn-warning btn-sm">View</a>
+                                    <a href="{{ route('admin.pengembalian.mark_damaged', $pengembalian->id) }}" class="btn btn-warning btn-sm">View</a>
                                 @endif
                             </td>
                         </tr>

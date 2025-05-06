@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\BarangApiController;
 use App\Http\Controllers\API\PeminjamanController;
 use App\Http\Controllers\API\KategoriApiController;
+use App\Http\Controllers\Api\PengembalianController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -23,4 +24,5 @@ Route::prefix('v1')->group(function () {
     Route::get('/barangs', [BarangApiController::class, 'index']);
     Route::get('/kategoris', [KategoriApiController::class, 'index']);
     Route::post('/peminjaman', [PeminjamanController::class, 'store']);
+    Route::post('/pengembalian', [PengembalianController::class, 'store']);
 });

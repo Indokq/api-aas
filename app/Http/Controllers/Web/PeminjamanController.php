@@ -51,12 +51,4 @@ class PeminjamanController extends Controller
         return redirect()->route('admin.peminjaman.index')->with('error', 'Peminjaman ditolak!');
     }
 
-    public function return($id)
-    {
-        $peminjaman = Peminjaman::findOrFail($id);
-        $peminjaman->status = 'returned';
-        $peminjaman->save();
-
-        return redirect()->route('admin.peminjaman.index')->with('info', 'Barang telah dikembalikan!');
-    }
 }

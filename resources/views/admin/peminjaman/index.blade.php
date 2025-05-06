@@ -24,6 +24,7 @@
                         <th>Nama Peminjam</th>
                         <th>Nama Barang</th>
                         <th>Jumlah</th>
+                        <th>Alasan</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -35,6 +36,7 @@
                             <td>{{ $pinjam->nama_peminjam }}</td>
                             <td>{{ $pinjam->barang->nama_barang ?? '-' }}</td>
                             <td>{{ $pinjam->jumlah }}</td>
+                            <td>{{ $pinjam->alasan_meminjam }}</td>
                             <td>
                                 @if($pinjam->status == 'pending')
                                 <span class="badge badge-warning text-dark">Pending</span>
@@ -58,12 +60,6 @@
                                         @csrf
                                         @method('POST')
                                         <button type="submit" class="btn btn-danger btn-sm">Reject</button>
-                                    </form>
-                                @elseif($pinjam->status == 'approved')
-                                    <form action="{{ route('peminjaman.return', $pinjam->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('POST')
-                                        <button type="submit" class="btn btn-info btn-sm">Return</button>
                                     </form>
                                 @endif
                             </td>

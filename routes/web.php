@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\PengembalianController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\AuthController;
@@ -60,6 +61,17 @@ Route::middleware(['is_admin'])->group(function () {
         Route::post('/reject/{id}', [PeminjamanController::class, 'reject'])->name('peminjaman.reject');
         Route::post('/return/{id}', [PeminjamanController::class, 'return'])->name('peminjaman.return');
 });
+
+
+    Route::prefix('admin/pengembalian')->group(function () {
+        Route::get('/', [PengembalianController::class, 'index'])->name('admin.pengembalian.index');
+        Route::get('/{id}', [PengembalianController::class, 'show'])->name('admin.pengembalian.show');
+        Route::post('/approve/{id}', [PengembalianController::class, 'approve'])->name('pengembalian.approve');
+        Route::post('/reject/{id}', [PengembalianController::class, 'reject'])->name('pengembalian.reject');
+        Route::get('/damaged/{id}', [PengembalianController::class, 'markDamaged'])->name('admin.pengembalian.mark_damaged');
+        Route::put('/damaged/{id}', [PengembalianController::class, 'updateDamaged'])->name('admin.pengembalian.update_damaged');
+});
+
 
 
 });

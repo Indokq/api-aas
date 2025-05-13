@@ -65,7 +65,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="6">Tidak ada data peminjaman.</td></tr>
+                        <tr><td colspan="7">Tidak ada data peminjaman.</td></tr>
                     @endforelse
                 </tbody>
             </table>

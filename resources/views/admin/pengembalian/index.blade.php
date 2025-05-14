@@ -17,9 +17,9 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Peminjaman ID</th>
                         <th>Tanggal Pengembalian</th>
                         <th>Status Pengembalian</th>
+                        <th>Keterangan</th>
                         <th>Jumlah Dikembalikan</th>
                         <th>Denda</th>
                         <th>Aksi</th>
@@ -29,7 +29,6 @@
                     @forelse($pengembalians as $pengembalian)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $pengembalian->peminjaman_id }}</td>
                             <td>{{ $pengembalian->tanggal_pengembalian }}</td>
                             <td>
                                 @if($pengembalian->status_pengembalian == 'pending')
@@ -40,6 +39,7 @@
                                     <span class="badge badge-danger text-dark">Damaged</span>
                                 @endif
                             </td>
+                            <td>{{ $pengembalian->keterangan }}</td>
                             <td>{{ $pengembalian->jumlah_dikembalikan }}</td>
                             <td>Rp. {{ number_format($pengembalian->denda, 0, ',', '.') }}</td>
                             <td>

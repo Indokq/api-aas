@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::prefix('v1')->group(function () {
     Route::get('/barangs', [BarangApiController::class, 'index']);
     Route::get('/kategoris', [KategoriApiController::class, 'index']);
+    Route::get('/peminjaman', [PeminjamanController::class, 'index']);
     Route::post('/peminjaman', [PeminjamanController::class, 'store']);
     Route::post('/pengembalian', [PengembalianController::class, 'store']);
 });

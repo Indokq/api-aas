@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
+
+    
     public function store(Request $request)
     {
         // Validasi input dari mobile
@@ -61,4 +63,19 @@ class PeminjamanController extends Controller
             ], 500);
         }
     }
+    
+    public function index(Request $request) {
+        $peminjaman = Peminjaman::with('barang')
+            ->orderByDesc('created_at')
+            ->get();
+    
+        return response()->json([
+            'success' => true,
+            'data' => $peminjaman
+        ]);
+    }
+    
+
+    
+    
 }

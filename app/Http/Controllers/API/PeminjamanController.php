@@ -72,10 +72,8 @@ class PeminjamanController extends Controller
         return response()->json([
             'success' => true,
             'data' => $peminjaman
-        ]);
+        ]);     
     }
-    
 
-    
     
 }

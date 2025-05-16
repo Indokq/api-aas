@@ -18,6 +18,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Foto</th>
                         <th>Nama Barang</th>
                         <th>Kategori</th>
                         <th>Aksi</th>
@@ -27,6 +28,13 @@
                     @forelse($barangs as $barang)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>
+                                @if($barang->foto)
+                                    <img src="{{ asset('storage/' . $barang->foto) }}" alt="foto barang" style="max-height: 50px;">
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->kategori->nama_kategori ?? '-' }}</td>
                             <td>
@@ -38,7 +46,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="4">Tidak ada data.</td></tr>
+                        <tr><td colspan="5">Tidak ada data.</td></tr>
                     @endforelse
                 </tbody>
             </table>

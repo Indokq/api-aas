@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,16 @@
 
     <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f4f6f9;
+            background-color: #f8f9fa;
         }
 
         .wrapper {
@@ -24,25 +26,59 @@
         }
 
         .sidebar {
-            width: 250px;
-            background-color: #1f2d3d;
+            width: 280px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar-brand {
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-brand h5 {
+            margin-bottom: 0;
+            font-weight: 600;
+            font-size: 20px;
         }
 
         .sidebar .nav-link {
-            color: #cfd8dc;
-            padding: 12px 20px;
-            font-size: 16px;
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background-color: #0d6efd;
-            color: #ffffff;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 12px 25px;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 0;
+            margin: 4px 0;
+            position: relative;
+            transition: all 0.2s ease;
         }
 
         .sidebar .nav-link i {
-            margin-right: 10px;
+            margin-right: 12px;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding-left: 30px;
+        }
+
+        .sidebar .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border-left: 4px solid #ffffff;
+        }
+
+        .sidebar .nav-link.active i {
+            color: #ffffff;
         }
 
         .sidebar.collapsed {
@@ -53,45 +89,94 @@
         .content {
             flex: 1;
             padding: 20px;
+            transition: all 0.3s;
         }
 
         .topbar {
-            height: 56px;
-            background-color: #212529;
+            height: 70px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
             color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .topbar .menu-toggle {
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .topbar .menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f3f4f6;
         }
 
         @media (max-width: 768px) {
             .sidebar {
                 position: absolute;
-                z-index: 1000;
                 height: 100%;
             }
+
+            .content {
+                width: 100%;
+            }
+        }
+
+        /* Add some nice styling for nav-item sections */
+        .nav-section {
+            padding: 8px 25px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 15px;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Topbar -->
-    <div class="topbar d-flex justify-content-between align-items-center px-3 py-2 bg-dark text-white">
-        <button class="menu-toggle btn text-white" id="toggleSidebar">
-            <i class="fa fa-bars"></i>
-        </button>
-    
+    <div class="topbar d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <button class="menu-toggle btn" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span class="ms-3 fw-semibold d-none d-md-inline">SARPRAS</span>
+        </div>
+
         <div class="dropdown">
-            <button class="btn text-white dropdown-toggle d-flex align-items-center gap-2" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-user-circle fa-lg"></i>
+            <button class="btn text-white dropdown-toggle d-flex align-items-center gap-2" type="button"
+                id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-circle fa-lg"></i>
                 <span>Admin</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
@@ -99,32 +184,83 @@
                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="dropdown-item">
-                            <i class="fa fa-sign-out-alt me-2"></i> Logout
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
                         </button>
                     </form>
                 </li>
             </ul>
         </div>
     </div>
-    
+
     <!-- Main Wrapper -->
     <div class="wrapper">
         <!-- Sidebar -->
-        <div class="sidebar bg-dark text-white" id="sidebar">
-            <div class="p-3">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
                 <h5 class="text-white">
-                    <a href="{{ route('dashboard') }}" class="nav-item text-white" style="text-decoration: none;">
-                        Dashboard
+                    <i class="fas fa-cubes me-2"></i>
+                    <a href="{{ route('dashboard') }}" class="text-white" style="text-decoration: none;">
+                        SARPRAS
                     </a>
                 </h5>
-                <ul class="nav flex-column mt-4">
-                    <li class="nav-item"><a href="{{ route('admin.kategori.index') }}" class="nav-link"><i class="fa fa-cogs"></i>Kategori</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.barang.index') }}" class="nav-link"><i class="fa fa-cube"></i>Barang</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.stok.index') }}" class="nav-link"><i class="fa fa-bar-chart-o"></i>Stok</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.peminjaman.index') }}" class="nav-link"><i class="fa fa-archive"></i>Peminjaman</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.pengembalian.index') }}" class="nav-link"><i class="fa fa-exchange"></i>Pengembalian</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bar-chart"></i>Laporan Peminjaman</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bar-chart-o"></i>Laporan Pengembalian</a></li>
+            </div>
+            <div class="p-3">
+                <div class="nav-section">Menu Utama</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <i class="fas fa-home"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.kategori.index') }}"
+                            class="nav-link {{ request()->routeIs('admin.kategori.*') ? 'active' : '' }}">
+                            <i class="fas fa-tags"></i>Kategori
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.barang.index') }}"
+                            class="nav-link {{ request()->routeIs('admin.barang.*') ? 'active' : '' }}">
+                            <i class="fas fa-box"></i>Barang
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.stok.index') }}"
+                            class="nav-link {{ request()->routeIs('admin.stok.*') ? 'active' : '' }}">
+                            <i class="fas fa-chart-line"></i>Stok
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section">Transaksi</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.peminjaman.index') }}"
+                            class="nav-link {{ request()->routeIs('admin.peminjaman.*') ? 'active' : '' }}">
+                            <i class="fas fa-hand-holding"></i>Peminjaman
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pengembalian.index') }}"
+                            class="nav-link {{ request()->routeIs('admin.pengembalian.*') ? 'active' : '' }}">
+                            <i class="fas fa-undo"></i>Pengembalian
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section">Laporan</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-file-alt"></i>Laporan Peminjaman
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-file-contract"></i>Laporan Pengembalian
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -141,7 +277,15 @@
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('collapsed');
         });
+ // Highlight active menu based on current route
+        const currentPath = window.location.pathname;
+        document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
     </script>
 </body>
 @yield('scripts')
+
 </html>

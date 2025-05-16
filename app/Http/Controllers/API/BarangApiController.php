@@ -10,7 +10,7 @@ class BarangApiController extends Controller
     public function index()
     {
         $barangs = Barang::with(['kategori', 'stok'])->get();
-    
+
         $formatted = $barangs->map(function ($barang) {
             return [
                 'id' => $barang->id,
@@ -22,14 +22,13 @@ class BarangApiController extends Controller
                     'nama_kategori' => $barang->kategori->nama_kategori,
                 ],
                 'jumlah_tersedia' => $barang->stok ? $barang->stok->jumlah : 0,
+                'foto' => $barang->foto ? asset('storage/' . $barang->foto) : null,
             ];
         });
-    
+
         return response()->json([
             'success' => true,
             'data' => $formatted
         ]);
     }
-    
 }
-

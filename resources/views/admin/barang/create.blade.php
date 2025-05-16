@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <h1 class="mb-4">Tambah Barang</h1>
 
-    <form action="{{ route('barang.store') }}" method="POST">
+    <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -25,6 +25,11 @@
         <div class="mb-3">
             <label>Deskripsi</label>
             <textarea name="deskripsi" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>Foto (opsional)</label>
+            <input type="file" name="foto" class="form-control">
         </div>
 
         <button type="submit" class="btn btn-success">Simpan</button>

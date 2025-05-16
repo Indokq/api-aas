@@ -13,6 +13,7 @@ class Barang extends Model
         'nama_barang',
         'id_kategori',
         'deskripsi',
+        'foto',
     ];
 
     public function Kategori() {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Models\Barang;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
 class BarangController extends Controller
@@ -15,28 +16,33 @@ class BarangController extends Controller
         return view('admin.barang.index', compact('barangs'));
     }
 
-    // Form tambah barang
     public function create()
     {
         $kategoris = Kategori::all();
         return view('admin.barang.create', compact('kategoris'));
     }
 
-    // Simpan barang baru
     public function store(Request $request)
     {
         $request->validate([
             'nama_barang' => 'required',
             'id_kategori' => 'required|exists:kategoris,id',
             'deskripsi' => 'nullable|string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // validasi foto
         ]);
 
-        Barang::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('foto')) {
+            $fotoPath = $request->file('foto')->store('barang', 'public');
+            $data['foto'] = $fotoPath;
+        }
+
+        Barang::create($data);
 
         return redirect()->route('admin.barang.index')->with('success', 'Barang berhasil ditambahkan');
     }
 
-    // Form edit barang
     public function edit($id)
     {
         $barang = Barang::findOrFail($id);
@@ -44,26 +50,45 @@ class BarangController extends Controller
         return view('admin.barang.edit', compact('barang', 'kategoris'));
     }
 
-    // Update barang
     public function update(Request $request, $id)
     {
         $request->validate([
             'nama_barang' => 'required',
             'id_kategori' => 'required|exists:kategoris,id',
             'deskripsi' => 'nullable|string',
-            'jumlah' => 'required|integer'
+            'jumlah' => 'required|integer',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $barang = Barang::findOrFail($id);
-        $barang->update($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama dulu
+            if ($barang->foto) {
+                Storage::disk('public')->delete($barang->foto);
+            }
+
+            $fotoPath = $request->file('foto')->store('barang', 'public');
+            $data['foto'] = $fotoPath;
+        }
+
+        $barang->update($data);
 
         return redirect()->route('admin.barang.index')->with('success', 'Barang berhasil diperbarui');
     }
 
-    // Hapus barang
     public function destroy($id)
     {
-        Barang::findOrFail($id)->delete();
+        $barang = Barang::findOrFail($id);
+
+        // Hapus juga file fotonya
+        if ($barang->foto) {
+            Storage::disk('public')->delete($barang->foto);
+        }
+
+        $barang->delete();
+
         return redirect()->route('admin.barang.index')->with('success', 'Barang berhasil dihapus');
     }
 }

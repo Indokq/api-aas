@@ -254,12 +254,14 @@
                 <div class="nav-section">Laporan</div>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('admin.laporan.peminjaman') }}"
+                           class="nav-link {{ request()->routeIs('admin.laporan.peminjaman') ? 'active' : '' }}">
                             <i class="fas fa-file-alt"></i>Laporan Peminjaman
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('admin.laporan.pengembalian') }}"
+                           class="nav-link {{ request()->routeIs('admin.laporan.pengembalian') ? 'active' : '' }}">
                             <i class="fas fa-file-contract"></i>Laporan Pengembalian
                         </a>
                     </li>

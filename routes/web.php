@@ -20,8 +20,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['is_admin'])->group(function () {
 
     // Dashboard
-
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Reports
+    Route::get('/admin/laporan/peminjaman', [DashboardController::class, 'laporanPeminjaman'])->name('admin.laporan.peminjaman');
+    Route::get('/admin/laporan/pengembalian', [DashboardController::class, 'laporanPengembalian'])->name('admin.laporan.pengembalian');
 
 
     // Barang CRUD

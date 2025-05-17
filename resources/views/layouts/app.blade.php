@@ -170,7 +170,9 @@
             <button class="menu-toggle btn" id="toggleSidebar">
                 <i class="fas fa-bars"></i>
             </button>
-            <span class="ms-3 fw-semibold d-none d-md-inline">SARPRAS</span>
+            <span class="ms-3 fw-semibold d-none d-md-inline">
+                <img src="https://absensi.smktarunabhakti.net:3995/img/iluminati_tb.png" alt="Logo" style="height: 30px; max-width: 100%;">
+            </span>
         </div>
 
         <div class="dropdown">
@@ -198,9 +200,9 @@
         <div class="sidebar" id="sidebar">
             <div class="sidebar-brand">
                 <h5 class="text-white">
-                    <i class="fas fa-cubes me-2"></i>
                     <a href="{{ route('dashboard') }}" class="text-white" style="text-decoration: none;">
-                        SARPRAS
+                        <img src="https://absensi.smktarunabhakti.net:3995/img/iluminati_tb.png" alt="Logo" style="height: 40px; max-width: 100%;">
+                        <span class="ms-2">SARPRAS</span>
                     </a>
                 </h5>
             </div>

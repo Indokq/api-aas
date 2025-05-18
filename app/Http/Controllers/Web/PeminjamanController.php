@@ -15,12 +15,6 @@ class PeminjamanController extends Controller
         return view('admin.peminjaman.index', compact('peminjaman'));
     }
 
-    public function show($id)
-    {
-        $peminjaman = Peminjaman::with(['barang', 'user'])->findOrFail($id);
-        return view('peminjaman.show', compact('peminjaman'));
-    }
-
     public function approve($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);

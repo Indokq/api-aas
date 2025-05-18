@@ -69,17 +69,6 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="jumlah" class="form-label">
-                                <i class="fas fa-sort-numeric-up me-1"></i>Jumlah
-                            </label>
-                            <input type="number" name="jumlah" id="jumlah"
-                                class="form-control @error('jumlah') is-invalid @enderror"
-                                value="{{ old('jumlah', $barang->jumlah) }}" required>
-                            @error('jumlah')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
 
                         <div class="mb-3">
                             <label for="foto" class="form-label">

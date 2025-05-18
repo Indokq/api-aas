@@ -56,7 +56,6 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'id_kategori' => 'required|exists:kategoris,id',
             'deskripsi' => 'nullable|string',
-            'jumlah' => 'required|integer',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 

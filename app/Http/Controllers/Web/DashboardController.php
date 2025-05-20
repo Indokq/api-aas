@@ -25,28 +25,23 @@ class DashboardController extends Controller
         return view('admin.dashboard', compact('labels', 'jumlahs', 'totalBarang', 'totalDipinjam', 'totalPengembalian'));
     }
 
-    /**
-     * Display a report of approved peminjaman.
-     */
     public function laporanPeminjaman()
     {
-        // Get all approved peminjaman with related data
+        // Get all peminjaman with related data except pending
         $peminjamans = Peminjaman::with(['barang', 'user'])
-            ->where('status', 'approved')
+            ->whereIn('status', ['approved', 'rejected', 'returned'])
             ->orderBy('tanggal_pinjam', 'desc')
             ->get();
 
         return view('admin.laporan.peminjaman', compact('peminjamans'));
     }
 
-    /**
-     * Display a report of successful pengembalian.
-     */
+   
     public function laporanPengembalian()
     {
-        // Get all completed pengembalian with related data
+        // Get all pengembalian with related data except pending
         $pengembalians = Pengembalian::with(['peminjaman', 'peminjaman.barang', 'peminjaman.user'])
-            ->where('status_pengembalian', 'completed')
+            ->whereIn('status_pengembalian', ['completed', 'damaged'])
             ->orderBy('tanggal_pengembalian', 'desc')
             ->get();
 

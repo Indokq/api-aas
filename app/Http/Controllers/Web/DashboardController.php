@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $labels = $stoks->map(fn($s) => $s->barang->nama_barang)->toArray();
         $jumlahs = $stoks->pluck('jumlah')->toArray();
         $totalBarang = $stoks->sum('jumlah');
-        $totalDipinjam = Peminjaman::sum('jumlah');
+        $totalDipinjam = Peminjaman::count();
 
         // Tambah total pengembalian
         $totalPengembalian = Pengembalian::count(); // asumsi kolom jumlah ada

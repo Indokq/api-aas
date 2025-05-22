@@ -214,6 +214,7 @@
                             class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                             <i class="fas fa-home"></i>Dashboard
                         </a>
+                        
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('admin.kategori.index') }}"
@@ -263,6 +264,15 @@
                         <a href="{{ route('admin.laporan.pengembalian') }}"
                            class="nav-link {{ request()->routeIs('admin.laporan.pengembalian') ? 'active' : '' }}">
                             <i class="fas fa-file-contract"></i>Laporan Pengembalian
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-section">User Management</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}"
+                           class="nav-link {{ request()->routeIs('users*') ? 'active' : '' }}">
+                            <i class="fas fa-users"></i>Users
                         </a>
                     </li>
                 </ul>

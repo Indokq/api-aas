@@ -10,12 +10,22 @@ use Illuminate\Support\Facades\DB;
 class PeminjamanController extends Controller
 {
 
-    
+
     public function store(Request $request)
     {
+        // Validasi user, hanya bisa membuat peminjaman untuk dirinya sendiri
+        if (!$request->user()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized. User not authenticated.'
+            ], 401);
+        }
+
+        // Ambil user_id dari user yang sedang login
+        $userId = $request->user()->id;
+
         // Validasi input dari mobile
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
+        $request->validate([
             'barang_id' => 'required|exists:barangs,id',
             'nama_peminjam' => 'required|string|max:255',
             'alasan_meminjam' => 'required|string',
@@ -27,15 +37,15 @@ class PeminjamanController extends Controller
         DB::beginTransaction();
 
         try {
-            // Menyimpan data peminjaman
+            // Menyimpan data peminjaman dengan user_id dari user yang login
             $peminjaman = Peminjaman::create([
-                'user_id' => $request->user_id,
+                'user_id' => $userId, // Gunakan user_id dari user yang login
                 'barang_id' => $request->barang_id,
                 'nama_peminjam' => $request->nama_peminjam,
                 'alasan_meminjam' => $request->alasan_meminjam,
                 'jumlah' => $request->jumlah,
                 'tanggal_pinjam' => $request->tanggal_pinjam,
-                'status' => 'pending', 
+                'status' => 'pending',
             ]);
 
             DB::commit();
@@ -63,17 +73,30 @@ class PeminjamanController extends Controller
             ], 500);
         }
     }
-    
+
     public function index(Request $request) {
+        // Validasi user, hanya bisa melihat data miliknya sendiri
+        if (!$request->user()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized. User not authenticated.'
+            ], 401);
+        }
+
+        // Ambil user_id dari user yang sedang login
+        $userId = $request->user()->id;
+
+        // Query peminjaman hanya milik user yang login
         $peminjaman = Peminjaman::with('barang')
+            ->where('user_id', $userId)
             ->orderByDesc('created_at')
             ->get();
-    
+
         return response()->json([
             'success' => true,
             'data' => $peminjaman
-        ]);     
+        ]);
     }
 
-    
+
 }

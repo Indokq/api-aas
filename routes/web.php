@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\KategoriController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\PeminjamanController;
 use App\Http\Controllers\Web\StokBarangController;
+use App\Http\Controllers\Web\UserController;
 
 
 // Auth
@@ -21,6 +22,10 @@ Route::middleware(['is_admin'])->group(function () {
 
     // Dashboard
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+    // User management routes (admin only)
+    Route::resource('/admin/users', UserController::class);
 
     // Reports
     Route::get('/admin/laporan/peminjaman', [DashboardController::class, 'laporanPeminjaman'])->name('admin.laporan.peminjaman');

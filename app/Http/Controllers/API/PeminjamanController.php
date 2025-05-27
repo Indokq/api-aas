@@ -21,6 +21,7 @@ class PeminjamanController extends Controller
             'alasan_meminjam' => 'required|string',
             'jumlah' => 'required|integer|min:1',
             'tanggal_pinjam' => 'required|date',
+            'tanggal_kembali' => 'required|date|after:tanggal_pinjam',
             'status' => 'in:pending,approved,rejected,returned',
         ]);
 
@@ -35,6 +36,7 @@ class PeminjamanController extends Controller
                 'alasan_meminjam' => $request->alasan_meminjam,
                 'jumlah' => $request->jumlah,
                 'tanggal_pinjam' => $request->tanggal_pinjam,
+                'tanggal_kembali' => $request->tanggal_kembali,
                 'status' => 'pending', 
             ]);
 
@@ -51,6 +53,7 @@ class PeminjamanController extends Controller
                     'alasan_meminjam' => $peminjaman->alasan_meminjam,
                     'jumlah' => $peminjaman->jumlah,
                     'tanggal_pinjam' => $peminjaman->tanggal_pinjam,
+                    'tanggal_kembali' => $peminjaman->tanggal_kembali,
                     'status' => $peminjaman->status,
                 ]
             ], 201);

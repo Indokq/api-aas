@@ -25,6 +25,7 @@
                                         <th>Barang</th>
                                         <th>Jumlah</th>
                                         <th>Tanggal Pinjam</th>
+                                        <th>Tanggal Kembali</th>
                                         <th>Alasan</th>
                                         <th>Status</th>
                                     </tr>
@@ -37,6 +38,7 @@
                                             <td>{{ $peminjaman->barang->nama_barang ?? 'N/A' }}</td>
                                             <td>{{ $peminjaman->jumlah }}</td>
                                             <td>{{ \Carbon\Carbon::parse($peminjaman->tanggal_pinjam)->format('d/m/Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($peminjaman->tanggal_kembali)->format('d/m/Y') }}</td>
                                             <td>{{ $peminjaman->alasan_meminjam }}</td>
                                             <td>
                                                 @if($peminjaman->status == 'approved')
